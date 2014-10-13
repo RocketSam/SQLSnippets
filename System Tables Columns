@@ -1,0 +1,29 @@
+select	t.object_id as table_object_id,
+		t.name as table_name,
+		c.object_id as column_object_id,
+		c.name as column_name, 
+		c.column_id, 
+		c.*
+from		sys.columns c
+inner join	sys.tables t
+	on	c.object_id = t.object_id
+where		c.name like '%active%'
+order by	c.name, t.name
+
+/*--------- View Column Names in alphabetical order */
+select	c.name as column_name,
+		v.name as view_name
+from		sys.columns c
+inner join	sys.views v
+	on	c.object_id = v.object_id
+where		v.name = 'order_item_with_aux'
+order by	column_name
+
+/*--------- Table Column Names in alphabetical order */
+select	c.name as column_name,
+		t.name as table_name
+from		sys.columns c
+inner join	sys.tables t
+	on	c.object_id = t.object_id
+where		t.name = 'order_item'
+order by	column_name
