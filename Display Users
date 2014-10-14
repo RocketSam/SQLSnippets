@@ -1,0 +1,16 @@
+SP_WHO
+
+or
+
+select 		hostname ,
+               	program_name,
+               	loginame,
+               	cpu,
+               	physical_io,
+               	memusage,
+               	login_time,
+               	last_batch,
+               	status
+from          	master. dbo.sysprocesses
+where         	dbid = db_id ('InvestorPlace')
+order by       	hostname
